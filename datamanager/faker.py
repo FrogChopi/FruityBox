@@ -121,13 +121,18 @@ bundle = [
 #  PROVIDER  #
 ##############
 
+tmp_providers = []
+
 for i in providers:
     tmp = Provider(name = i, location = location[random.randrange(0, len(providers))])
+    tmp_providers.append(tmp)
     tmp.save()
-    s = ProviderSerializer(tmp)
-    s.data
-    c = JSONRenderer().render()
-
+    
 ############
 #  FRUITS  #
 ############
+
+for i in fruits :
+    tmp_p = tmp_providers[random.randrange(0, len(tmp_providers))]
+    tmp = Fruit(name = i, origin = tmp_p.location, provider = tmp_p, stock = random.randrange(2, 20), price = random.randrange(2, 20))
+    tmp.save()

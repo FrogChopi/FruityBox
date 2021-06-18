@@ -14,6 +14,7 @@ class Fruit(models.Model):
     origin = models.CharField(max_length=100)
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
     stock = models.IntegerField(default=0, validators=[ MinValueValidator(0) ])
+    price = models.IntegerField(default=1, validators=[ MinValueValidator(1) ])
 
     def __str__(self) :
         return self.name
